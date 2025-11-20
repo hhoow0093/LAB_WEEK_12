@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    movieViewModel.popularMovies.collect {
-                            movies ->movieAdapter.addMovies(movies)
+                    movieViewModel.popularMovies.collect { movies ->
+                        movieAdapter.addMovies(movies)
                     }
                 }
                 launch {
