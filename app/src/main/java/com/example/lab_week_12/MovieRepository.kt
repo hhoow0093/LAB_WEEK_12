@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.lab_week_12.api.MovieService
 import com.example.lab_week_12.model.Movie
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 class MovieRepository(private val movieService: MovieService) {
 
@@ -17,12 +21,10 @@ class MovieRepository(private val movieService: MovieService) {
     val error: LiveData<String>
         get() = errorLiveData
 
-    suspend fun fetchMovies() {
-        try {
-            val popularMovies = movieService.getPopularMovies(apiKey)
-            movieLiveData.postValue(popularMovies.results)
-        } catch (exception: Exception) {
-            errorLiveData.postValue("An error occurred: ${exception.message}")
-        }
+    fun fetchMovies(): Flow<List<Movie>> {
+        return flow {
+            emit(movieService.getPopularMovies(apiKey).results)
+        }.flowOn(Dispatchers.IO)
     }
+
 }
