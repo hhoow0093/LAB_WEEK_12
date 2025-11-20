@@ -1,3 +1,3 @@
-# LAB_WEEK_12
-Starter App for LAB WEEK 12 <br />
-Topic: Coroutines & Flow
+# LAB_WEEK_12 Activity
+
+[![Frame-1000005837.png](https://i.postimg.cc/Wbq428p0/Frame-1000005837.png)](https://postimg.cc/561JgwCt)
